@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/><!-- 是否启用 WebApp 全屏模式 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/><!-- 设置状态栏的背景颜色 -->
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no"/><!-- 禁止数字识自动别为电话号码 --><!-- 不让android识别邮箱 -->
+	<title>中医馆商城首页</title>
+	<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+	<script type="text/javascript" src="__JS__/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="__JS__/resize.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+	<style type="text/css">
+		.a-shop-wrap{
+			padding-bottom:6.4rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="title-info">
+		<a href="https://dev170.weibanker.cn/lvsk/www/jinfeng/" class="back-link">
+			<i class="icon-left-arrow"></i>返回
+		</a>
+		首页推荐
+	</div>
+	<div class="shop-swiper-wrap">
+		<div class="swiper-container swiper1">
+		  	<div class="swiper-wrapper">
+		    	<div class="swiper-slide">
+		    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner1.png"></a>
+		    	</div>
+		    	<div class="swiper-slide">
+		    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner1.png"></a>
+		    	</div>
+		    	<div class="swiper-slide">
+		    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner1.png"></a>
+		    	</div>
+		  	</div>
+		  	<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<div class="shop-recommend">
+		<div class="recommend-title">编辑推荐</div>
+		<div class="recommend-wrap clearfix">
+			<div class="recommend-item left">
+				<div class="swiper-container swiper2">
+				  	<div class="swiper-wrapper">
+				    	<div class="swiper-slide">
+				    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner2.png"></a>
+				    	</div>
+				    	<div class="swiper-slide">
+				    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner2.png"></a>
+				    	</div>
+				    	<div class="swiper-slide">
+				    		<a href="" class="inline-block"><img src="__IMAGES__/index-banner2.png"></a>
+				    	</div>
+				  	</div>
+				  	<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="recommend-item left">
+				<a href="" class="inline-block">
+					<img src="__IMAGES__/index-banner3.png">
+				</a>
+				<a href="" class="inline-block">
+					<img src="__IMAGES__/index-banner4.png">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="a-shop-wrap">
+		<foreach name="data" item="vo">
+		<div class="shop-recommend">
+			<div class="recommend-title">{$vo.title}</div>
+			<div class="recommend-wrap clearfix">
+				<foreach name="vo['list']" item="_list">
+				<div class="goods-item left">
+					<a href="{:U('goods',array('id'=>$_list['goodsid']))}" class="goods-link">
+						<img src="{$_list.img_url}">
+						<div class="item-title">
+							{$_list.goodsname}
+						</div>
+						<div class="item-money">
+							积分：{$_list.integral_pay}
+						</div>
+					</a>
+					<div class="shop-btn clearfix">
+						<a href="javascript:;" class="add-card shop-list-btn left" data-id="{$_list.goodsid}">加入购物车</a>
+						<a href="{:U('Order/addOrder',array('id'=>$_list['goodsid'].'|1'))}" class="add-order shop-list-btn right" data-id="{$_list.goodsid}">立即下单</a>
+					</div>
+				</div>
+				</foreach>
+			</div>
+		</div>
+		</foreach>
+		<div class="recommend-title">退货说明</div>
+		<div class="regoods">退货说明退货说明退货说明退货说明退货说明退货说明退货说明退货说明退货说明退货说明退货说明退货说明11111111111</div>
+
+	</div>
+	<div class="nav-list clearfix">
+		<a href="{:U('Shop/index')}" class="left nav-item">
+			<i class="icon-nav-index active"></i>
+			<div class="nav-name active">
+				首页
+			</div>
+		</a>
+		<a href="{:U('Classify/index')}" class="left nav-item">
+			<i class="icon-nav-type"></i>
+			<div class="nav-name">
+				分类
+			</div>
+		</a>
+		<a href="{:U('Order/card')}" class="left nav-item">
+			<i class="icon-nav-shopcar"></i>
+			<div class="nav-name">
+				购物车
+			</div>
+			<span class="tips-circle">{$_shopnum}</span>
+		</a>
+		<a href="{:U('About/index')}" class="left nav-item">
+			<i class="icon-nav-user"></i>
+			<div class="nav-name">
+				个人中心
+			</div>
+		</a>
+	</div>
+	<div class="tips-box" style="display: none"></div>
+	<script type="text/javascript">
+		$(function(){
+			var mySwiper1 = new Swiper('.swiper1', {
+				loop : true,
+				autoplay: {
+				    delay: 2000,
+				    stopOnLastSlide: false,
+				    disableOnInteraction: true,
+			    },
+				pagination: {
+			      el: '.swiper-pagination'
+			    },
+			})
+
+			var mySwiper2 = new Swiper('.swiper2', {
+				loop : true,
+				autoplay: {
+				    delay: 3000,
+				    stopOnLastSlide: false,
+				    disableOnInteraction: true,
+			    },
+				pagination: {
+			      el: '.swiper-pagination'
+			    },
+			})
+			$(".add-card").click(function(){
+					var url="{:U('order/addCard')}";
+					var query ={};
+					query['id']=$(this).attr('data-id');
+					$.post(url,query).success(function(res){
+					if(res.status==1){
+						 window.location.href="{:U('order/card')}"; 
+						}else{
+						popup(res.info);
+						}
+					});
+			
+			})
+		})
+	</script>
+</body>
+</html>

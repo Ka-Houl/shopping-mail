@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/><!-- 是否启用 WebApp 全屏模式 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/><!-- 设置状态栏的背景颜色 -->
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no"/><!-- 禁止数字识自动别为电话号码 --><!-- 不让android识别邮箱 -->
+	<title>中医馆商城商品详情</title>
+	<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+	<script type="text/javascript" src="__JS__/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="__JS__/resize.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+</head>
+<body>
+	<div class="title-info">
+		<a href="javascript:history.go(-1);" class="back-link">
+			<i class="icon-left-arrow"></i>返回
+		</a>
+		{$data.goodsname}
+	</div>
+	<div class="shop-detail-wrap">
+		<div class="swiper-container">
+		  	<div class="swiper-wrapper">
+			<foreach name="data['banner']" item="banner">
+		    	<div class="swiper-slide">
+		    		<img src="{$banner}">
+		    	</div>
+			</foreach>	
+		  	</div>
+		  	<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<div class="s-detail-info">
+		<div class="s-detail-1">￥{$data.money}</div>
+		<div class="s-detail-2">
+			{$data.goodsname}
+		</div>
+		<div class="s-detail-3">
+			剩余库存{$data.inventory}
+		</div>
+		<!-- <eq name="data['out_type_2']" value="1">
+		
+		
+		<div class="s-detail-3 clearfix">
+			<span class="ticket-goods left">兑换券商品</span>
+			<span class="s-detail-shop left">
+				<i></i><span class="s-shop-str nowrap">（适用门店：{$store}）</span><i></i></span>
+		</div>
+		</eq> -->
+	</div>
+	<!-- <gt name="data['youhui_num']" value="0">
+	<div class="s-detail-act">
+		<div class="act-title">优惠活动(<i class="act-num">{$data['youhui_num']}</i>)</div>
+		<div class="act-t-list clearfix">
+			<foreach name="youhui" item="_list">
+			<php>$a=is_get_card($_list['id'])</php>
+			<div class="youhui act-item left <eq name="a" value="1">active</eq>" data-id="{$_list.id}">
+				<div class="act-money">￥{$_list.reduce}</div>
+				<div class="act-words">满{$_list.least}元立减</div>
+				 <eq name="a" value="1"><div class="act-state"></div></eq>
+			</div>
+			</foreach>
+		</div>
+	</div>
+	</gt> -->
+	<div class="detail-cont shop-detail-cont">
+		<div class="detail-nav">
+			<div class="detail-nav-item active" id="detail-nav-1">
+				图文详情
+			</div>
+			<div class="detail-nav-item" id="detail-nav-2">
+				产品参数
+			</div>
+			<div class="detail-nav-item" id="detail-nav-3">
+				评价
+			</div>
+		</div>
+		<div class="detail-text shop-detail-text">
+			<div class="detail-t-1" style="display: block;">
+				{$data.details}
+			</div>
+			<div class="detail-t-2" style="display: none;">
+				{$data.parameter}
+			</div>
+			<div class="detail-t-3" style="display: none;">
+				<div class="appraise-list">
+				<foreach name="comment" item="_list">
+					<div class="appraise-item clearfix">
+						<div class="appraise-head left">
+							<img src="{$_list.headimgurl}">
+						</div>
+						<div class="appraise-text left">
+							<div class="appraise-row clearfix">
+								<div class="appraise-name left">{$_list.nickname}</div>
+								<div class="appraise-date right">{$_list.create_time|time_format='m月d日'}</div>
+							</div>
+							<div class="appraise-cont">{$_list.title}
+							</div>
+						</div>
+					</div>
+				</foreach>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="shop-detail-sideBtn">
+		<div class="fixed-btn fb-1">
+			<a href="{:U('order/card')}">
+				<img src="__IMAGES__/shopcar-icon.png">
+				<div class="fixed-text">
+					购物车
+				</div>
+			</a>
+		</div>
+		<!-- <div class="fixed-btn fb-2">
+			<a href="tel:85855450">
+				<img src="__IMAGES__/call-icon.png">
+				<div class="fixed-text">
+					客服热线
+				</div>
+			</a>
+		</div> -->
+		
+	</div>
+	<div class="fixed-shop-detail">
+		<div class="fixed-bottom-1 left">
+			<span class="collect-btn <eq name="collection" value="1">active</eq>"></span>
+			<div class="collect-text">收藏</div>
+		</div>
+		<div class="fixed-bottom-2 left">
+			<a href="javascript:void(0);" class="add-card inline-block" data-id="{$data.goodsid}">加入购物车</a>
+		</div>
+		<div class="fixed-bottom-3 left">
+			<a href="{:U('Order/addOrder',array('id'=>$data['goodsid'].'|1'))}" class="inline-block">立即下单</a>
+		</div>
+		
+	</div>
+	<div class="tips-box" style="display: none"></div>
+	<script type="text/javascript">
+		$(function(){
+			/*轮播*/
+			var mySwiper1 = new Swiper('.swiper-container', {
+				loop : true,
+				autoplay: {
+				    delay: 3000,
+				    stopOnLastSlide: false,
+				    disableOnInteraction: true,
+			    },
+				pagination: {
+			      el: '.swiper-pagination',
+			      clickable :true,
+			    },
+			})
+
+			/*tab切换*/
+			$(".detail-nav-item").on("click",function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".detail-t-"+this.id.split("-")[2]).show().siblings().hide();
+			})
+
+			/*箭头*/
+			$(".s-info-arrow").on("click",function(){
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(".s-shop-str").addClass("nowrap");
+				}else{
+					$(this).addClass("active");
+					$(".s-shop-str").removeClass("nowrap");
+				}
+			})
+
+			// /*优惠点击领取*/
+			// $(".youhui").click(function(){
+			// var uid={:is_login()};
+			// 	if(uid<=0){
+			// 	popup("请先登录");
+			// 	 setTimeout(function(){
+			// 	 window.location.href="{:U('Login/index')}"; 
+			// 	 },1500);
+			// 	 return false;
+			// 	}
+			// 	if($(this).hasClass("active")){
+			// 		popup("您已领取过")
+			// 	}else{
+			// 		var cardid=$(this).attr('data-id');
+			// 		var url="{:U('About/getyouhui')}";
+			// 		var this_=$(this);
+			// 		var query ={};
+			// 		query['id']=cardid;
+			// 		$.post(url,query).success(function(res){
+			// 		if(res.status==1){
+			// 			popup("领取成功！");
+			// 			this_.addClass("active");
+			// 			this_.append('<div class="act-state"></div>');
+			// 		}else{
+			// 			popup(res.info);
+			// 		}
+			// 		});
+					
+			// 	}
+			// })
+
+			/*点击收藏*/
+			$(".collect-btn").on("click",function(){
+				var uid={:is_login()};
+				if(uid<=0){
+				popup("请先登录");
+				 setTimeout(function(){
+				 window.location.href="{:U('Login/index')}"; 
+				 },1500);
+				 return false;
+				}
+				var status=0;
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					popup("取消收藏成功！");
+					status=-1;
+				}else{
+					$(this).addClass("active");
+					popup("收藏成功！");
+					status=1;
+				}
+					var url="{:U('About/collection')}";
+					var query ={};
+					query['goodsid']={$_GET['id']};
+					query['status']=status;
+					$.post(url,query).success(function(res){
+					return false;
+					});
+			})
+		})
+		$(".add-card").click(function(){
+					var url="{:U('order/addCard')}";
+					var query ={};
+					query['id']=$(this).attr('data-id');
+					$.post(url,query).success(function(res){
+					if(res.status==1){
+						 window.location.href="{:U('order/card')}"; 
+						}else{
+						popup(res.info);
+						}
+					});
+			
+			})
+		
+	</script>
+</body>
+</html>
