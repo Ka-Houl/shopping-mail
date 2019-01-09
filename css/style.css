@@ -1,4 +1,4 @@
-body{
+﻿body{
 	background-color: #f9f9f9;
 	//min-height: 100%;
 }
@@ -72,7 +72,7 @@ body{
 	background-color: #fff;
 }
 .login-btn{
-	font-size: 1.8rem;
+	font-size: 0.18rem;
 	color:#fff;
 	width: 80%;
 	height:4rem;
@@ -102,10 +102,10 @@ body{
 	top:0;
 	left: 0;
 	width: 100%;
-	height: 4.4rem;
-	line-height: 4.4rem;
+	height: 4.5rem;
+	line-height: 4.8rem;
 	text-align: center;
-	background-color: #462c08;
+	background-color: rgb(2, 95, 167);
 	font-size: 1.8rem;
 	color:#fff;
 	z-index: 1000;
@@ -354,7 +354,6 @@ body{
 	bottom: 0;
 	left: 0;
 	background-color: #fff;
-	border-top: 1px solid #c2c2c2;
 	z-index: 100;
 }
 .nav-item{
@@ -366,7 +365,7 @@ body{
 .nav-name{
 	font-size: 1.2rem;
 	color:#707070;
-	line-height: 2.1rem;
+	line-height: 1;
 }
 .nav-item i{
 	width: 100%;
@@ -394,7 +393,7 @@ i.icon-nav-recharge.active{
 	background-image: url(../images/active-nav-recharge.png);
 }
 .nav-name.active{
-	color:#c49047;
+	color: rgb(2, 95, 167);
 }
 
 /*recharge*/
@@ -695,7 +694,7 @@ button.get-code[disabled]{
 	height: 4.5rem;
 	font-size: 1.8rem;
 	color:#fff;
-	background-color: #ae854c;
+	background-color: rgb(2, 95, 167);
 }
 .data-img{
 	width: 3.7rem;
@@ -774,8 +773,8 @@ button.get-code[disabled]{
 	text-align: center;
 }
 .order-nav.active{
-	color:#f1cb7b;
-	border-bottom: .3rem solid #f1cb7b;
+	color: rgb(2, 95, 167);
+	border-bottom: .3rem solid rgb(2, 95, 167);
 }
 .order-item{
 	margin-bottom: 1rem;
@@ -845,7 +844,7 @@ button.get-code[disabled]{
 }
 .order-money{
 	font-size: 1.5rem;
-	color: #f1cb7b;
+	color: rgb(2, 95, 167);
 	margin-bottom: 2rem;
 }
 .order-num{
@@ -859,7 +858,7 @@ button.get-code[disabled]{
 	font-size: 1.1rem;
 }
 .order-btn-wrap{
-	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
 	padding: .6rem 1rem;
 	text-align: right;
 	font-size: 1.1rem;
@@ -1661,7 +1660,7 @@ button.get-code[disabled]{
 	background-size: 1.9rem auto;
 }
 .icon-nav-type{
-	background: url(../images/type-icon.png) center center no-repeat;
+	background: url(../images/type-iconn.png) center center no-repeat;
 	background-size: 1.75rem auto;
 }
 .icon-nav-shopcar{
@@ -1800,7 +1799,7 @@ i.icon-nav-shopcar.active{
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #c49047;
+	background-color: rgb(2, 95, 167);
 }
 .type-box{
 	font-size: 0;
@@ -1873,7 +1872,7 @@ i.icon-nav-shopcar.active{
 .shop-list-btn{
 	display: inline-block;
 	padding: .7rem;
-	width: 7.6rem;
+	/*width: 7.6rem;*/
 	text-align: center;
 	font-size: 1.1rem;
 	border: 1px solid #ababab;
@@ -1927,7 +1926,7 @@ i.icon-nav-shopcar.active{
 
 /*shop-index*/
 .shop-swiper-wrap{
-	padding-top: 4.4rem;
+	padding-top: 4.5rem;
 }
 .shop-recommend{
 	margin-top: .8rem;
@@ -1985,7 +1984,7 @@ i.icon-nav-shopcar.active{
 .s-detail-info{
 	width: 100%;
 	border-top: 1px solid #eee;
-	padding:1.3rem 2.1rem 1.2rem;
+	padding:1.8rem 2.1rem 1rem;
 	background-color: #fff;
 	position: relative;
 }
@@ -2190,8 +2189,7 @@ i.icon-nav-shopcar.active{
 
 /*shop-car*/
 .shopCar-wrap{
-	padding-top: 5.4rem;
-	padding-bottom: 10.4rem;
+	padding-top: 4.5rem;
 }
 .shopCar-item{
 	width: 100%;
@@ -2265,8 +2263,9 @@ i.icon-nav-shopcar.active{
     background-size: 1.4rem 1.5rem;
 }
 .shopCar-money{
+	text-align: right;
 	font-size: 1.5rem;
-	color: #f1cb7b;
+	color: rgb(2, 95, 167);
 }
 /* .shopCar-money::before{
 	content: "￥"
@@ -2290,6 +2289,7 @@ i.icon-nav-shopcar.active{
 }
 .shopCar-allMoney{
 	font-size: 1.4rem;
+	color:#C9380C;
 }
 .shopCar-img{
 	padding-top: 0;
@@ -2299,7 +2299,7 @@ i.icon-nav-shopcar.active{
 	height: 100%;
 }
 .shopCar-total{
-	position: fixed;
+	// position: fixed;
 	bottom: 5.6rem;
 	left: 0;
 	width: 100%;
@@ -2332,9 +2332,9 @@ i.icon-nav-shopcar.active{
     text-align: center;
     line-height: 2.5rem;
     border-radius: 2.7rem;
-    border: 1px solid #c9380b;
+    border: 1px solid rgb(2, 95, 167);
     margin-left: .5rem;
-    color: #c9380b;
+    color: rgb(2, 95, 167);
 }
 .shopCar-totalMoney{
 	font-size: 1.3rem;
@@ -2640,7 +2640,7 @@ i.icon-nav-shopcar.active{
 	color:#212121;
 }
 .yellow-row{
-	color:#f1cb7b;
+	color:#C9380C;
 }
 .red-row{
 	color:#c9380b;
