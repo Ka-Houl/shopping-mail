@@ -8,9 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/><!-- 设置状态栏的背景颜色 -->
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no"/><!-- 禁止数字识自动别为电话号码 --><!-- 不让android识别邮箱 -->
-	<title>中医馆商城订单确认页面</title>
+	<title>商城订单确认页面</title>
 	<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
 	<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/style.css?v=1.4">
 	<script type="text/javascript" src="__JS__/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="__JS__/resize.js"></script>
 	<script type="text/javascript" src="__JS__/common.js"></script>
@@ -26,6 +27,7 @@
 		padding-top: 1rem;
 	}
 	.shop-orderRow{
+		position: relative;
 		margin-bottom: 0;
 		/* margin-left: 1rem */
 	}
@@ -44,7 +46,25 @@
 	.a-shop-wrap select{
 		border: none;
 		outline: none;
-		height: 3.3rem;
+		height: 3rem;
+	}
+	.shop-orderRow select{
+		width: 9rem;
+		/* border:1px solid #666; */
+		border-radius: 0.5rem;
+		padding: 0 2 0 1rem ;
+		text-align: center;
+
+	}
+	.shop-arrow{
+		position: absolute;
+		top: .3rem;
+        left: 20rem;
+        transform: rotate(90deg);
+        -ms-transform: rotate(90deg); /* IE 9 */
+		-webkit-transform: rotate(90deg); /* Safari and Chrome */
+        -o-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
 	}
 	</style>
 </head>
@@ -94,7 +114,7 @@
 						</eq> -->
 					</div>
 					<div class="shopCar-right right">
-						<div class="shopCar-money">{$_list['info']['money']*$_list['num']}</div>
+						<div class="shopCar-money">{$_list['info']['integral_pay']*$_list['num']}</div>
 						<!-- <div class="shopCar-money">{$_list['info']['money']*$_list['num']}</div> -->
 						<div class="shop-orderNum">数量：{$_list.num}</div>
 					</div>
@@ -102,13 +122,16 @@
 				<div class="shop-orderRow">取货方式：物流</div>
 
 				<div class="shop-orderRow">请选择快递公司：
-						
 								<!-- 顺丰快递 -->
 								<select id="exp">
+								<span class="arrow-right shop-arrow"></span>
+
 									    <foreach name="express" item="vo">
 										    <option value="{$vo.id}">{$vo.expressname}</option>
 									    </foreach>
 								</select>
+								<span class="arrow-right shop-arrow"></span>
+
 				</div>
 				<!-- <div class="shop-orderRow">配送方式：<eq name="_list['info']['out_type_1']" value="1">顺丰快递</eq> <eq name="_list['info']['out_type_2']" value="1">门店自取</eq></div> -->
 			</div>

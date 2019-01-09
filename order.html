@@ -36,7 +36,7 @@
 			margin-left: .5rem;
 			border-color: #a98858;
 			color: #a98858;
-			margin-top:1rem;
+			/* margin-top:1rem; */
 		}
 		.order-link{
 			position:relative;
@@ -50,7 +50,7 @@
 </head>
 <body style="-webkit-tap-highlight-color:rgba(0,0,0,0)">
 	<div class="title-info">
-		<a href="javascript:history.go(-1);" class="back-link">
+		<a href="https://dev170.weibanker.cn/lvsk/www/jinfeng/#ProfileTab" class="back-link">
 			<i class="icon-left-arrow"></i>返回
 		</a>
 		我的订单
@@ -63,139 +63,33 @@
 	</div>
 	<div class="order-container mescroll" id="mescroll">
 		<div id="dataList">
-			<!-- <div class="order-item">
-				<div class="order-top clearfix">
-					<div class="order-shop left">订单时间：2017-12-12 22:22:00</div>
-					<div class="order-state right">待支付</div>
-				</div>
-				<div class="order-info">
-					<ul>
-						<li>
-							<a href="order-detail.html" class="order-link clearfix">
-								<div class="order-img-wrap left">
-									<image>
-								</div>
-								<div class="order-title left">天辅安中医馆5000元充值卡（送500元）</div>
-								<div class="order-payInfo right">
-									<div class="order-money">5000</div>
-									<div class="order-num">数量：1</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="order-bottom">
-					<span class="order-text">共1件商品</span>
-					<span class="order-all">合计：<i class="fs-14">5000</i></span>
-				</div>
-				<div class="order-btn-wrap">
-					<a href="javascript:;" class="order-btn-1">取消订单</a>
-					<a href="javascript:;" class="order-btn-2">确认收货</a>
-					<a href="javascript:;" class="order-btn-2 pay-order-btn">付款</a>
-				</div>
-			</div> -->
+			
 		</div>
 	</div>
-	</div>
-	<!-- <div class="order-container" id="empty-wrap" style="display: none">
-		<div class="order-null-wrap">
-			<img src="__IMAGES__/empty.png">
-			<div class="order-null-text-1">
-				您还没有相关的订单
-			</div>
-			<div class="order-null-text-2">
-				可以去看看有哪些想买的
-			</div>
-		</div>
-	</div> -->
+
 	<!-- 提示弹窗 -->
 	<div class="tips-box" style="display: none;"></div>
-	<!-- 付款弹窗 -->
-	<div class="popup-box pay-popup" style="display: none;">
-		<div class="black-mask"></div>
-		<div class="popup-pay">
-			<i class="icon-close"></i>
-			<div class="popup-info">付款</div>
-			<div class="popup-form">
-				<form action="" id="pay-form">
-					<div class="popup-item clearfix">
-						<label class="popup-label left">积分</label>
-						<div class="left mark-tips">
-							可使用20020分
-						</div>
-						<div class="right popup-radio">
-							<label class="circle">
-								<input type="radio" name="choose" value="1" checked="true">
-								<span></span>
-							</label>
-						</div>
-						<!-- 以下为空的显示 -->
-						<!-- <div class="left mark-tips empty-tips">
-							可使用0分
-						</div>
-						<div class="right popup-radio">
-							<label class="circle">
-								<input type="radio" name="choose" value="1" readonly>
-								<span></span>
-							</label>
-						</div>-->
-					</div>
-					<div class="popup-item clearfix">
-						<label class="popup-label left">卡券</label>
-						<div class="left mark-tips">
-							满300元减30
-						</div>
-						<div class="right popup-arrow">
-							<i class="icon-down-arrow"></i>
-						</div>
-						<select name="ticket" class="popup-select" onchange="select(this)">
-							<option value="1">满300元减30</option>
-							<option value="2">满500元减50</option>
-						</select>
-						<!-- 以下为空的显示 -->
-						<!-- <div class="left mark-tips empty-tips">
-							无代金券
-						</div>
-						<div class="right popup-arrow">
-							<i class="icon-down-arrow"></i>
-						</div>
-						<select name="ticket" class="popup-select" onchange="select(this)">
-							<option value="1">无代金券</option>
-						</select> -->
-					</div>
-					<div class="popup-item clearfix">
-						<label class="popup-label left">余额</label>
-						<div class="left money-tips">
-							1500元
-						</div>
-						<div class="right popup-radio">
-							<label class="circle">
-								<input type="radio" name="choose" value="2">
-								<span></span>
-							</label>
-						</div>
-					</div>
-					<div class="popup-text clearfix">
-						<div class="popup-t-left left">实际支付</div>
-						<div class="popup-t-right popup-total right">
-							1500元
-						</div>
-					</div>
-					<div class="popup-btn">
-						<button type="submit" class="popup-submit">立即购买</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+
 	<div class="tips-box" style="display: none"></div>
 	<script type="text/javascript">
 		$(function(){
-			var curNavIndex = 1;//默认为待支付
+			var tabId = GetQueryString("id");
+			var curNavIndex = tabId,
+			    oTab = document.getElementsByClassName("order-nav"),
+			    len = oTab.length;
+			    
+            renderTab(tabId);
+
+            //已发货的status已被占用为3，因此这里当url.id为3时，赋值为4，当url.id为4时，赋值为5
+            // if(curNavIndex >= 3){
+            //   curNavIndex = (curNavIndex==3? 4:5)
+            // }
+		    
 			$(".order-nav").click(function(){
 				var i=Number($(this).attr("data-id"));
 				if(curNavIndex!=i){
 					//更改列表条件
+
 					curNavIndex=i;
 					$(this).addClass("active").siblings().removeClass("active");
 					//重置列表数据
@@ -233,7 +127,7 @@
 					}
 				}
 			});
-	
+	        
 
 			/*联网加载列表数据  page = {num:1, size:5}; num:当前页 从1开始, size:每页数据条数 */
 			function getListData(page){
@@ -266,7 +160,7 @@
 					},
 	                dataType: 'json',
 	                success: function(data){
-					console.log(data)
+				    	console.log(data)
 						var list = data.info;
 						var listData =  [];
 						if(list){
@@ -274,7 +168,7 @@
 								listData.push(list[i]);
 							}
 						}
-						
+
 						//回调
 		                successCallback(listData);
 					},
@@ -293,7 +187,7 @@
 					var str = '<div class="order-item" data-id="'+item.orderid+'">'+
 								'<div class="order-top clearfix">'+
 									'<div class="order-shop left">订单时间：'+ getLocalTime(item.create_time)+'</div>'+
-									'<div class="order-state right">'+checkStatus(item.status)+'</div>'+
+									'<div class="order-state right">'+checkStatus(item.status,item.is_trace) +'</div>'+
 								'</div>';
 					var str2 = '';
 					for(var j = 0; j<item.goods_list.length;j++){
@@ -305,7 +199,7 @@
 								'<div class="order-payInfo right">'+
 									'<div class="order-money">积分：'+goodsInfo.integral_pay+'</div>'+
 									'<div class="order-num">数量：'+goodsItem.num+'</div>'+
-								'</div>'+toAppraise(item.status,goodsInfo.goodsid,item.orderid)+
+								'</div>'+
 								'</div></li>';
 					}
 					str+='<div class="order-info">'+
@@ -314,35 +208,33 @@
 							'<span class="order-text">共'+item.goods_list.length+'件商品</span>'+
 							'<span class="order-all">合计：<i class="fs-14">'+item.pay_integral+'&nbsp积分</i></span>'+
 						'</div>'+
-					'<div class="order-btn-wrap">'+isCancel(item.status,item.orderid)+
+					'<div class="order-btn-wrap">'+isCancel(item.status,item.orderid)+toReceive(item.status,item.orderid,item.is_trace)+toAppraise(item.status,goodsInfo.goodsid,item.orderid)+
 						'<a href="{:U('orderEdit')}/id/'+item.orderid+'" class="order-btn-4">订单详情</a>'+
 					'</div></div>';
 					listDom.append(str);
 				}
 			}
 			
-			// // 是否可以领取兑换券
-			// function isTicket(type,status,goodsid,orderid){
-			// 	if(type == "1" && status=="2"){
-			// 		return '<a href="javascript:void(0);" data-id="'+goodsid+'" data-oid="'+orderid+'" class="a-get-ticket">领兑换券</a>'
-			// 	}else{
-			// 		return ''
-			// 	}
-			// }
-			
 			//是否显示评价按钮
 			function toAppraise(status,goodsid,orderid){
 				if(status=="3"){
-					return '<a href="javascript:void(0);" class="a-to-appraise click-comment" data-id="'+goodsid+'" data-oid="'+orderid+'">评价</a>'
+						return '<a href="javascript:void(0);" class="a-to-appraise click-comment" data-id="'+goodsid+'" data-oid="'+orderid+'">评价</a>'
 				}else{
 					return ''
 				}
 			}
-			
+			//是否显示确认收货按钮
+			function toReceive(status,orderid,is_trace){
+				if(status=="2" && is_trace=='2'){
+					return '<a href="javascript:;" class="order-btn-4 confirm" data-id="'+orderid+'" >确认收货</a>'
+				}else{
+					return ''
+				}
+			}
 			//时间转换
-			    function getLocalTime(nS) {     
-					return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");      
-				}    
+			    function getLocalTime(nS) {
+					return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+				}
 			//是否显示 取消订单 和 付款 按钮
 			function isCancel(status,orderid){
 				if(status == "1"){
@@ -354,13 +246,21 @@
 			}
 			
 			//判断订单状态
-			function checkStatus(status){
+			function checkStatus(status,is_trace){
 				switch(status){
 					case "1":
 						return '待支付';
 					break;
 					case "2":
-						return '已支付';
+					    switch(is_trace){
+					    	case "1":
+								return '已支付(未发货)';
+							break;
+					    	case "2":
+								return '已发货';
+							break;
+					    }
+						
 					break;
 					case "3":
 						return '待评价';
@@ -370,6 +270,53 @@
 					break;
 				}
 			}
+
+			//获取连接参数
+			function GetQueryString(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r != null) {
+			        return unescape(r[2]);
+			    }
+
+			    return null;
+			}
+
+			//判断tab的渲染项
+			function renderTab(tabId){
+                for(var j = 0; j < len; j++){
+            	    oTab[j].className = "left order-nav"
+	            }
+	            if(oTab[tabId - 1]){
+				    oTab[tabId - 1].className += " active";
+	            }
+			}
+            
+
+            //确认收货
+			$(document).on('click','.confirm',function(){
+				var orderid=$(this).attr('data-id');
+				var url="{:U('order_confirm')}";
+				var query ={};
+				query['id']=orderid;
+				query['status'] =3;
+				$.post(url,query).success(function(res){
+					console.log(res)
+
+					if(res.status==1){
+						console.log("res.status==1")
+						setTimeout(function(){
+							window.location.href="{:U('About/order')}?id=3";
+						}, 2000);
+
+
+					}else{
+					    console.log("error")
+					    return false;
+					}
+				})
+			})
+
 			$(document).on('click','.order-btn-1',function(){
 			var orderid=$(this).attr('data-id');
 			var t_this=$(this);
@@ -398,31 +345,14 @@
 			}
 				
 			})
+
+			//评价按钮
 			$(document).on('click','.click-comment',function(){
 				var order=$(this).attr('data-oid');
 				var goodsid=$(this).attr('data-id');
 				window.location.href="{:U('About/comment')}/orderid/"+order+"/goodsid/"+goodsid; 
 			})
-			// $(document).on('click','.a-get-ticket',function(){
-			// 	var order=$(this).attr('data-oid');
-			// 	var goodsid=$(this).attr('data-id');
-			// 		var url="{:U('get_duihuan')}";
-			// 		var query ={};
-			// 		query['orderid']=order;
-			// 		query['goodsid']=goodsid;
-			// 		$.post(url,query).success(function(res){
-			// 			if(res.status==1){
-			// 					popup('领取成功');
-			// 					setTimeout(function(){
-			// 					mescroll.resetUpScroll();
-			// 					},1500);
-			// 					return false;
-			// 			}else{
-			// 				popup(res.info);
-			// 				return false;
-			// 			}
-			// 		})
-			// })
+			
 
 		})
 

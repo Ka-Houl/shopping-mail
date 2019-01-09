@@ -42,6 +42,9 @@
 	.grey-row .choose-circle{
 		border-color: rgba(115, 115, 115,.3);
 	}
+	.shop-moneyNum{
+		margin-top: 0; 
+	}
 	</style>
 </head>
 <body>
@@ -58,21 +61,6 @@
 				<span class="choose-circle active" data-id="1"></span>
 			</span>
 		</div> -->
-		<egt name="money" value="$balance">
-		<div class="shop-moneyRow clearfix grey-row">
-			<span class="left shop-rowLeft">积分支付(余额:{$balance},积分不足)</span>
-			<span class="right shop-rowRight red-row">
-				<span class="choose-circle"></span>
-			</span>
-		</div>
-		<else />
-		<div class="shop-moneyRow clearfix">
-			<span class="left shop-rowLeft">积分支付(余额:{$balance})</span>
-			<span class="right shop-rowRight red-row">
-				<span class="choose-circle" data-id="2"></span>
-			</span>
-		</div>
-		</egt>
 	</div>
 	<div class="shop-moneyNum clearfix">
 		<span class="left shop-rowLeft">支付积分</span>
@@ -94,11 +82,11 @@
 			}
 		})
 		$(".save-btn").click(function(){
-		var pay_type=$(".active").attr('data-id');
-		if(!pay_type){
-			popup('请选择支付方式！');
-			return false;
-		}
+		// var pay_type=$(".active").attr('data-id');
+		// if(!pay_type){
+		// 	popup('请选择支付方式！');
+		// 	return false;
+		// }
 		var url="{:U('order_pay')}";
 		var query ={};
 		query['orderid']={$orderid};
@@ -112,7 +100,7 @@
 						}else{
 							popup('支付成功');
 							setTimeout(function(){
-							window.location.href="{:U('About/order')}";							
+							window.location.href="{:U('About/order')}?id=2";							
 						}, 2000);  
 							
 						}

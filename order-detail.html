@@ -57,6 +57,9 @@
 		.goods-detail .goods-info{
 			margin-top: 0;
 		}
+		.detail-list .express-info{
+			color: #212121
+		}
 	</style>
 </head>
 <body>
@@ -94,9 +97,10 @@
 				  <switch name="data.status" >
 					<case value="-1"><span class="detail-state">无效订单</span></case>
 					<case value="1"><span class="detail-state">未支付</span></case>
-					<case value="2"><span class="detail-state">待收货</span></case>
+					<case value="2"><span class="detail-state">已支付(未发货)</span></case>
 					<case value="3"><span class="detail-state">待评价</span></case>
-					<case value="3"><span class="detail-state">已完成</span></case>
+					<case value="4"><span class="detail-state">已完成</span></case>
+
 				</switch>
 			</li>
 			<li>
@@ -104,6 +108,14 @@
 				<span>
 					{$data.expressname}
 		    	</span>
+			</li>
+			<li>
+				<span>物流信息：</span>
+				<?php if($data['is_trace']==1 ){ ?>
+                暂无物流信息
+                <?php }else{ ?>
+				<a href="{:U('order/trace',array('id'=>$data['orderid']))}" class="express-info">点击查看</a>
+				<?php } ?>
 			</li>
 		</ul>
 	</div>

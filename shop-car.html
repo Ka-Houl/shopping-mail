@@ -8,13 +8,33 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/><!-- 设置状态栏的背景颜色 -->
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no"/><!-- 禁止数字识自动别为电话号码 --><!-- 不让android识别邮箱 -->
-	<title>中医馆商城购物车</title>
+	<title>商城购物车</title>
 	<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
 	<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
 	<script type="text/javascript" src="__JS__/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="__JS__/resize.js"></script>
 	<script type="text/javascript" src="__JS__/common.js"></script>
 </head>
+<style type="text/css">
+	.nav-item {
+		width: 33.3%;
+	}
+	.shopCar-total {
+	    bottom: 5rem;
+	}
+	.nav-list{
+		height: 50px;
+		}
+	.nav-item {
+	    padding-top: .5rem;
+	}
+	.mescroll-upwarp{
+		line-height:  2.5rem;
+		text-align: center;
+		font-size: 12px;
+        color: #666;
+	}
+</style>
 <body>
 	<div class="title-info">
 		<a href="javascript:history.go(-1);" class="back-link">
@@ -51,7 +71,7 @@
 		</div>
 		</foreach>
 	<div class="shopCar-total">
-		<div class="shopCar-totalItem left">
+		<!-- <div class="shopCar-totalItem left">
 			<span class="choose-circle"></span>
 			<span class="inline-block choose-text">全选</span>
 			<span class="shopCar-totalNum">0</span>
@@ -59,35 +79,31 @@
 		<div class="right">
 			<i class="shopCar-totalMoney">0</i>
 			<a href="javascript:void(0);" class="shopCar-confirm">立即付款</a>
-		</div>
-	</div>
-	<div class="nav-list clearfix">
+		</div> -->
+		<!-- <div class="mescroll-upwarp mescroll-hardware" style="visibility: visible;">- - 购物车空空如也 - -</div>
+ -->	</div>
+	
+	<!-- <div class="nav-list clearfix">
 		<a href="{:U('Shop/index')}" class="left nav-item">
-			<i class="icon-nav-index "></i>
-			<div class="nav-name ">
-				首页
-			</div>
-		</a>
-		<a href="{:U('Classify/index')}" class="left nav-item">
-			<i class="icon-nav-type"></i>
-			<div class="nav-name">
-				分类
-			</div>
-		</a>
-		<a href="{:U('Order/card')}" class="left nav-item">
-			<i class="icon-nav-shopcar active"></i>
+			<i class="icon-nav-index active"></i>
 			<div class="nav-name active">
-				购物车
+				商城
 			</div>
-			<span class="tips-circle">{$_shopnum}</span>
 		</a>
-		<a href="{:U('About/index')}" class="left nav-item">
+		<a href="https://dev170.weibanker.cn/lvsk/www/jinfeng/#ProfileTab" class="left nav-item">
 			<i class="icon-nav-user"></i>
 			<div class="nav-name">
 				个人中心
 			</div>
 		</a>
-	</div>
+		<a href="https://dev170.weibanker.cn/lvsk/www/jinfeng/#MyWallet" class="left nav-item">
+			<i class="icon-nav-type"></i>
+			<div class="nav-name">
+				钱包
+			</div>
+		</a>
+		
+	</div> -->
 	<div class="tips-box" style="display: none"></div>
 	<script type="text/javascript">
 		//加减方法
@@ -98,6 +114,7 @@
 			var	money= $(ele).parents(".shopCar-middle").siblings(".shopCar-right").find(".shopCar-money").text();
 			var allNum = $(ele).parents(".shopCar-row").siblings(".shopCar-bottom").find(".shopCar-allNum");
 			var allMoney = $(ele).parents(".shopCar-row").siblings(".shopCar-bottom").find(".shopCar-allMoney");
+			console.log(allMoney)
 			var isChoosed = $(ele).parents(".shopCar-middle").siblings('.shopCar-choose').find("span").hasClass("active");
 			var m1 = parseFloat($(".shopCar-totalMoney").text());
 			var flag;
@@ -126,6 +143,7 @@
 			}
 
 			var a1 = $(".shopCar-choose .active").parents('.shopCar-row').siblings(".shopCar-bottom").find(".shopCar-allMoney");
+			console.log(a1)
 			var a2 = 0;
 			if(a1.length>0){
 				for (var i = 0; i < a1.length; i++) {
@@ -181,6 +199,7 @@
 					$.post(url,query).success(function(res){
 					return false;
 					});
+				hasShopcar()
 			})
 
 			/*全选*/
@@ -244,10 +263,32 @@
 					return false;
 				}else{
 					return false;
-				}	
-			
+				}
 			})
 		})
+
+		function hasShopcar(){
+			var shopTotal = document.getElementsByClassName("shopCar-total")[0];
+			console.log(shopTotal.innerHTML)
+			if($(".shopCar-item").length){
+				var hasgoods =  '<div class="shopCar-totalItem left">' +
+					'<span class="choose-circle"></span>' +
+					'<span class="inline-block choose-text">全选</span>' +
+					'<span class="shopCar-totalNum">0</span></div>' + 
+		            '<div class="right">' +
+		                '<i class="shopCar-totalMoney">0</i>'+
+			            '<a href="javascript:void(0);" class="shopCar-confirm">立即付款</a>'+
+		            '</div>';
+				shopTotal.innerHTML = hasgoods;
+
+			}
+			else{
+				var nogoods = '<div class="mescroll-upwarp mescroll-hardware" style="visibility: visible;">- - 购物车空空如也 - -</div>';
+				shopTotal.innerHTML = nogoods;
+			}
+		}
+
+		hasShopcar();
 	</script>
 </body>
 </html>
